@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/teste")
-public class TesteController {
+@RequestMapping("/lambda")
+public class LambdaController {
 
     // @Autowired
     // private LambdaService lambdaService;
@@ -23,12 +23,23 @@ public class TesteController {
         palavras.add("Douglas Gomes");
         palavras.add("Bruno Queiroz");
 
-        palavras.forEach(t -> System.out.println(t));
-        palavras.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        palavras.forEach(System.out::println);
+        
+//        palavras.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        
+        //metodo comparing
+//        palavras.sort(Comparator.comparing(s -> s.length()));
+        
+        //method comparint with reference
+        palavras.sort(String.CASE_INSENSITIVE_ORDER);
+        
+        palavras.forEach(System.out::println);
 
+        System.out.println(palavras);
         
         new Thread(() -> System.out.println("Executando um Runnable")).start();
-
+        
         return palavras;
     }
+    
 }
